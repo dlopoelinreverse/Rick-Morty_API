@@ -4,6 +4,7 @@ import ReactPaginate from "react-paginate";
 import DataDisplay from "../components/DataDisplay";
 
 const Home = () => {
+  const [numberOfPage, setNumberOfPage] = useState();
   const [pageSelected, setPageSelected] = useState();
   const [pageData, setPageData] = useState([]);
   const [allCharacters, setAllCharacters] = useState();
@@ -12,11 +13,18 @@ const Home = () => {
     // console.log(pageSelected);
   };
 
+  const getNumberOfPage = () => {
+    axios
+      .get("https://rickandmortyapi.com/api/character")
+      .then((res) => setNumberOfPage(res.data.info.pages));
+  };
+
   const getAllCharcters = () => {
     console.log(pageData.info.count);
   };
 
   useEffect(() => {
+    getNumberOfPage();
     axios
       .get("https://rickandmortyapi.com/api/character/?page=" + pageSelected)
       .then((res) => setPageData(res.data));
@@ -34,7 +42,7 @@ const Home = () => {
           previousLabel={"<<"}
           nextLabel={">>"}
           breakLabel={"..."}
-          pageCount={42}
+          pageCount={numberOfPage}
           marginPagesDisplayed={4}
           pageRangeDisplayed={3}
           onPageChange={handlePageCLick}

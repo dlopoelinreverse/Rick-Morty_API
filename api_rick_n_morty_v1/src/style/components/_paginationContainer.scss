@@ -2,15 +2,12 @@
     background: $color3;
 
        
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35%;
+    display: block;
+    
     min-height: 80px;
     height: 20vh;
     max-height: 100px;
-    padding-bottom: 10px;
-    border-radius: 0 0 15px 0;
+    padding : 15px 0 15px 0;
     position: relative;
     position: sticky;
     top: 0;
@@ -21,6 +18,7 @@
         display: flex;
         justify-content: space-evenly;
         // width: 20%;
+        margin: 0 5% 0 5%;
         border-radius: 15px;
         font-family: $title1;
         font-size: 1.5rem;        
@@ -51,4 +49,8 @@
             }
         }        
     }
+
+    // &.hidden {
+    //     display: none;
+    // }
 }
