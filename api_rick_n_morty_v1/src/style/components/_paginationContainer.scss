@@ -1,0 +1,54 @@
+.pagination-container {
+    background: $color3;
+
+       
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    min-height: 80px;
+    height: 20vh;
+    max-height: 100px;
+    padding-bottom: 10px;
+    border-radius: 0 0 15px 0;
+    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
+    ul {
+        
+        display: flex;
+        justify-content: space-evenly;
+        // width: 20%;
+        border-radius: 15px;
+        font-family: $title1;
+        font-size: 1.5rem;        
+        background: $color4;
+        
+        li {
+            // padding: 15px;
+            color: $color1;
+            cursor: pointer;
+            
+            transition: 0.3s ease;
+
+            &:first-child, :hover {
+                border-radius: 15px 0 0 15px;
+            }
+            &:last-child, :hover {
+                border-radius:0 15px 15px 0;
+            }
+
+            &:hover {
+                background: $color31;
+                color: $color5;
+            }
+
+            a {
+               display: block;
+               padding: 20px;
+            }
+        }        
+    }
+}

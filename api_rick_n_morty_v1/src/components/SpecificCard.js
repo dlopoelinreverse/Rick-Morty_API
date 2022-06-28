@@ -12,8 +12,11 @@ const SpecificCard = ({ character }) => {
   //     }
   //   };
   return (
-    <div className="spcecific-card">
+    <div className="spcecific-card" id={"specificCard" + character.id}>
       <h3>{character.name}</h3>
+      <p id="status">
+        {character.status == "unknown" ? "" : `Status : ${character.status}`}
+      </p>
       <p id="gender">Gender : {character.gender}</p>
       <p id="lastLocation">
         {character.location.name == "unknown"

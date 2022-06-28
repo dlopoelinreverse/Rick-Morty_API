@@ -25,7 +25,9 @@ const Home = () => {
   }, [pageSelected]);
   return (
     <div className="home">
-      <DataDisplay pageData={pageData} />
+      <header>
+        <h1>Rick & Morty Universe</h1>
+      </header>
 
       <div className="pagination-container">
         <ReactPaginate
@@ -38,6 +40,8 @@ const Home = () => {
           onPageChange={handlePageCLick}
         />
       </div>
+      <DataDisplay pageData={pageData} />
+      <footer></footer>
     </div>
   );
 };

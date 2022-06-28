@@ -10,7 +10,7 @@ const DataDisplay = ({ pageData }) => {
   }, [pageData]);
   return (
     <div className="data-display">
-      <ul>
+      <ul className="cards-container">
         {pageResults &&
           pageResults.map((character) => (
             <Card key={character.id} character={character} />
