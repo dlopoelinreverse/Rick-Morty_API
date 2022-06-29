@@ -12,13 +12,7 @@ const Card = ({ character }) => {
   //   }
   // };
   return (
-    <div
-      className="card"
-      id={character.id}
-      //   onClick={() => showingCard()}
-      // onMouseEnter={() => setShowCard(true)}
-      // onMouseLeave={() => setShowCard(false)}
-    >
+    <div className="card" id={character.id}>
       {/* <li>/ */}
       <div className="img-container" id={character.id}>
         <img
@@ -29,18 +23,6 @@ const Card = ({ character }) => {
       </div>
       <div className="content">
         <h5 id={character.id}>{character.name}</h5>
-        <p className="lastTimeSeen" id={character.id}>
-          {character.location.name == "unknown"
-            ? ""
-            : `Last time seen in : ${character.location.name}`}
-        </p>
-        <p className="status" id={character.id}>
-          {character.status == "unknown" ? "" : `Status : ${character.status}`}
-        </p>
-        {/* </li> */}
-        {/* <div className="specific-card-container">
-        {showCard && <SpecificCard character={character} />}
-      </div> */}
       </div>
     </div>
   );
