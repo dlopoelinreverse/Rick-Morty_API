@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import axios from "axios";
 import AllCharacters from "./pages/AllCharacters";
@@ -7,12 +7,12 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="all-characters" elemnent={<AllCharacters />} />
+        <Route path="/all-characters" element={<AllCharacters />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 };
 

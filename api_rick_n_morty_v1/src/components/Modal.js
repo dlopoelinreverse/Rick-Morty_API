@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 const Modal = ({ open, dataId, onClose }) => {
   if (!open) return null;
-  console.log(dataId);
 
   return (
     <div className="overlay" onClick={onClose}>
