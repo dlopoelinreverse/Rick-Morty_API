@@ -16,13 +16,21 @@ $color2: #e4a788;
 $color3: #f0e14a;
 $color31: #ebe27f;
 $color4: #97ce4c;
+$color41: #7fac42;
+$color42:rgb(162, 235, 60);
 $color5: #e89ac7;
+$color51: #f77bc3;
 
 * {
     padding: 0;
     margin: 0;
     list-style: none;
     box-sizing: border-box;
+
+    &::selection {
+        background: $color42;
+        color: $color51;
+    }
 }
 
 body {

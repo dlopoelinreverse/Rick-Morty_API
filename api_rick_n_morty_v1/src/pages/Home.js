@@ -38,17 +38,19 @@ const Home = () => {
         <h1>Rick & Morty Universe</h1>
 
         <div className="pagination-container">
-          <ReactPaginate
-            previousLabel={"<<"}
-            nextLabel={">>"}
-            breakLabel={"..."}
-            pageCount={numberOfPage}
-            marginPagesDisplayed={3}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageCLick}
-          />
           <div className="page-indicator">
             <p>{pageSelected ? pageSelected : "1"}</p>
+          </div>
+          <div className="selector">
+            <ReactPaginate
+              previousLabel={"<<"}
+              nextLabel={">>"}
+              breakLabel={"..."}
+              pageCount={numberOfPage}
+              marginPagesDisplayed={3}
+              pageRangeDisplayed={3}
+              onPageChange={handlePageCLick}
+            />
           </div>
         </div>
       </header>
