@@ -67,7 +67,9 @@ header {
                         color: $color5;
                     }
                 }
-            }             
+            }  
+            
+            
             
         }
            
@@ -94,6 +96,10 @@ header {
         // &.hidden {
         //     display: none;
         // }
+    }
+
+    &::selection {
+        user-select: none;
     }
 }
 
