@@ -5,8 +5,9 @@ import DataDisplay from "../components/V2DataDisplay";
 
 const AllCharactersV3 = () => {
   const [charactersNumber, setCharactersNumber] = useState();
-  const [charactersData, setCharactersData] = useState({});
+  // const [charactersData, setCharactersData] = useState({});
   const [getCaracteristics, setGetCaracteristics] = useState(false);
+  let charactersData = {};
   const getData = () => {
     console.log("getData");
     axios
@@ -15,7 +16,8 @@ const AllCharactersV3 = () => {
       .then(getCharcatersId(charactersNumber))
       .then(getAllIdsData(idsArray))
       .catch((error) => console.error("Erreur getAllIdsData", error))
-      .then(console.log("Getting all charcters data : DONE"));
+      .then(console.log("Getting all charcters data : DONE"))
+      .then(console.log(charactersData));
 
     //   .then(diplaySelection());
     //   .then(getAllCharacteristics(charactersData));
@@ -28,7 +30,8 @@ const AllCharactersV3 = () => {
   const getAllIdsData = (id) => {
     axios
       .get("https://rickandmortyapi.com/api/character/" + id)
-      .then((res) => setCharactersData(res.data))
+      .then((res) => (charactersData = res.data))
+
       .then(setGetCaracteristics(true));
   };
   //   const getAllCharacteristics = (data) => {
