@@ -2,25 +2,45 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import axios from "axios";
-import AllCharacters from "./pages/AllCharacters";
-import Home from "./pages/Home";
-import AllCharactersV2 from "./pages/AllCharactersV2";
-import TestAsync from "./pages/TestAsync";
-import AsyncAllCharacters from "./pages/AsyncAllCharacters";
-import GetAllDataFromALlPages from "./pages/GetAllDataFromALlPages";
-import AllCharactersV3 from "./pages/AllCharactersV3";
+// import Home from "./pages/Home";
+import AllCharactersFromApp from "./pages/AllCharactersFromApp";
+import PaginatedCharacters from "./pages/PaginatedCharacters";
 
 const App = () => {
+  const [charactersNumber, setCharactersNumber] = useState();
+  const [allCharactersData, setAllCharactersData] = useState();
+  let charactersIds = [];
+  const getCharactersNumber = () => {
+    axios
+      .get("https://rickandmortyapi.com/api/character")
+      .then((res) => setCharactersNumber(res.data.info.count));
+  };
+  const getCharactersIds = () => {
+    for (let i = 1; i <= charactersNumber; i++) charactersIds.push(i);
+    // return console.log(charactersIds);
+  };
+  const getCharactersData = () => {
+    axios
+      .get("https://rickandmortyapi.com/api/character/" + charactersIds)
+      .then((res) => setAllCharactersData(res.data));
+  };
+  const getAllCharactersData = () => {
+    getCharactersNumber();
+    getCharactersIds();
+    getCharactersData();
+  };
+  useEffect(() => {
+    getAllCharactersData();
+  }, [charactersNumber]);
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/all-characters" element={<AllCharacters />} />
-        <Route path="/all-characters-v2" element={<AllCharactersV2 />} />
-        <Route path="/all-characters-v3" element={<AllCharactersV3 />} />
-        <Route path="/async" element={<TestAsync />} />
-        <Route path="/async-all" element={<AsyncAllCharacters />} />
-        <Route path="/all-pages" element={<GetAllDataFromALlPages />} />
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/paginated-characters" element={<PaginatedCharacters />} />
+        <Route
+          path="/all-characters"
+          element={<AllCharactersFromApp charactersData={allCharactersData} />}
+        />
       </Routes>
     </div>
   );
