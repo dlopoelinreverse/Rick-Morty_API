@@ -3,10 +3,12 @@ import Characteristics from "../components/AllCharacters/Characteristics";
 import Card from "../components/PaginatedCharacters/Card";
 
 const AllCharactersFromApp = ({ charactersData }) => {
+  const [episode, setEpisode] = useState();
   const [dates, setDates] = useState();
   const [types, setTypes] = useState();
   const [origins, setOrigins] = useState();
   const [locations, setLocations] = useState();
+  const [selectedEpisode, setSelectedEpisode] = useState();
   const [selectedDate, setSelectedDate] = useState();
   const [selectedType, setSelectedType] = useState();
   const [selectedOrigin, setSelectedOrigin] = useState();
@@ -18,8 +20,11 @@ const AllCharactersFromApp = ({ charactersData }) => {
     const dat1 = await data;
     const characterisctics = await getCharacteristics(dat1);
     // console.log(characterisctics);
+    // const episodeNum = await episodeNumber();
   };
 
+  let charactersEpisode = [];
+  let uniqueCharactersEpisode = [];
   let charactersDates = [];
   let uniqueCharactersDates = [];
   let charactersTypes = [];
@@ -31,6 +36,17 @@ const AllCharactersFromApp = ({ charactersData }) => {
 
   const getCharacteristics = (data) => {
     try {
+      Object.values(data).forEach((data) =>
+        charactersEpisode.push(data.episode)
+      );
+
+      charactersEpisode.forEach((episode) =>
+        episode.forEach((ep) =>
+          uniqueCharactersEpisode.includes(ep.slice(40, 43))
+            ? null
+            : uniqueCharactersEpisode.push(ep.slice(40, 43))
+        )
+      );
       Object.values(data).forEach((data) => charactersDates.push(data.created));
       charactersDates.forEach((date) =>
         uniqueCharactersDates.includes(date)
@@ -66,6 +82,8 @@ const AllCharactersFromApp = ({ charactersData }) => {
           : uniqueCharactersLocations.push(date)
       );
       return (
+        setEpisode(uniqueCharactersEpisode),
+        // console.log(uniqueCharactersEpisode),
         setDates(uniqueCharactersDates),
         setLocations(uniqueCharactersLocations),
         setOrigins(uniqueCharactersOrigins),
@@ -76,17 +94,28 @@ const AllCharactersFromApp = ({ charactersData }) => {
     }
   };
   const charactersDisplay = () => {
-    if (selectedDate || selectedLocation || selectedOrigin || selectedType) {
+    if (
+      // selectedEpisode ||
+      selectedDate ||
+      selectedLocation ||
+      selectedOrigin ||
+      selectedType
+    ) {
       return (
         charactersData &&
         Object.values(charactersData)
           .filter((data) => {
             switch (
+              // selectedEpisode ||
               selectedDate ||
               selectedLocation ||
               selectedOrigin ||
               selectedType
             ) {
+              // case selectedEpisode:
+              //   // return data.episode.includes(selectedEpisode);
+              //   return data.episode.forEach((ep) => ep.includes(episode));
+
               case selectedDate:
                 return data.created === selectedDate;
 
@@ -103,6 +132,21 @@ const AllCharactersFromApp = ({ charactersData }) => {
                 return console.log("y'a R");
             }
           })
+          .map((data) => (
+            // <div className="card" key={data.id}>
+            //   <h6>{data.name}</h6>
+            //   <img src={data.image} alt="" />
+            // </div>
+            <li>
+              <Card key={data.id} character={data} />
+            </li>
+          ))
+      );
+    } else if (selectedEpisode) {
+      return (
+        charactersData &&
+        Object.values(charactersData)
+          .filter((data) => {})
           .map((data) => (
             // <div className="card" key={data.id}>
             //   <h6>{data.name}</h6>
@@ -136,7 +180,15 @@ const AllCharactersFromApp = ({ charactersData }) => {
     }
     // console.log(selectedCategorie);
   };
+  // const episodeNumber = () => {
+  //   try {
+  //     console.log(Object.values(charactersData.episode[1]));
+  //   } catch (error) {
+  //     console.log("erreur numero de l'épisode", error);
+  //   }
+  // };
   const cleanCharacteristics = () => {
+    // setSelectedEpisode();
     setSelectedDate();
     setSelectedLocation();
     setSelectedOrigin();
@@ -147,6 +199,7 @@ const AllCharactersFromApp = ({ charactersData }) => {
     document.getElementById("origins-select").value = "";
     document.getElementById("types-select").value = "";
   };
+
   useEffect(() => {
     getAllCharacteristics(charactersData);
   }, [charactersData]);
@@ -156,6 +209,34 @@ const AllCharactersFromApp = ({ charactersData }) => {
         <h1>Rick & Morty Universe</h1>
       </header>
       <div className="filters">
+        <div className="episodeFilter">
+          <label for="episode-select">Choose an episode:</label>
+
+          <select
+            name="episode"
+            id="episode-select"
+            // onChange={(e) => selectedLocation(e.target.value)}
+            onChange={(e) => (
+              setSelectedEpisode(e.target.value),
+              charactersDisplay(),
+              setIsCharacteristicSelected(true)
+            )}
+          >
+            <option value="">Choose an episode</option>
+            {episode &&
+              episode
+                // .sort((a, b) => a.localeCompare(b))
+                .map((episode) => (
+                  <option
+                    key={episode}
+                    value={episode}
+                    disabled={isCharacteristicSelected ? true : false}
+                  >
+                    {episode}
+                  </option>
+                ))}
+          </select>
+        </div>
         <div className="datesFilter">
           <label for="dates-select">Choose a date:</label>
 
@@ -278,6 +359,7 @@ const AllCharactersFromApp = ({ charactersData }) => {
       <div className="cardContainer">
         <ul>{charactersDisplay()}</ul>
       </div>
+      {/* {episodeNumber()} */}
     </div>
   );
 };
