@@ -4,6 +4,7 @@ import Card from "../components/PaginatedCharacters/Card";
 
 const AllCharactersFromApp = ({ charactersData }) => {
   const [episode, setEpisode] = useState();
+
   const [dates, setDates] = useState();
   const [types, setTypes] = useState();
   const [origins, setOrigins] = useState();
@@ -94,6 +95,8 @@ const AllCharactersFromApp = ({ charactersData }) => {
     }
   };
   const charactersDisplay = () => {
+    let arrayEp = [];
+    let idEpArray = [];
     if (
       // selectedEpisode ||
       selectedDate ||
@@ -143,50 +146,36 @@ const AllCharactersFromApp = ({ charactersData }) => {
           ))
       );
     } else if (selectedEpisode) {
-      return (
-        charactersData &&
-        Object.values(charactersData)
-          .filter((data) => {})
-          .map((data) => (
-            // <div className="card" key={data.id}>
-            //   <h6>{data.name}</h6>
-            //   <img src={data.image} alt="" />
-            // </div>
-            <li>
-              <Card key={data.id} character={data} />
-            </li>
-          ))
-      );
+      //  extraire l'id et les numéros d'épisodes
+      charactersData &&
+        Object.values(charactersData).map((data) => {
+          {
+            arrayEp.push([data.id, data.episode.map((ep) => ep.slice(40, 43))]);
+          }
+        });
+      // a l'input récupérer les id
+      arrayEp
+        .filter((character) =>
+          character[1].map((epNum) => epNum).includes(`${selectedEpisode}`)
+        )
+        .map((character) => idEpArray.push(character[0]));
+      // filter la data avec l'id
+      return Object.values(charactersData)
+        .filter((character) => idEpArray.includes(character.id))
+        .map((data) => (
+          <li>
+            <Card key={data.id} character={data} />
+          </li>
+        ));
     } else {
-      // return (
-      //   charactersData &&
-      //   Object.values(charactersData)
-      //     // .filter((data) => data.location.name == "Abadango")
-      //     .map((data) => (
-      //       // <div className="card" key={data.id}>
-      //       //   <h6>{data.name}</h6>
-      //       //   <img src={data.image} alt="" />
-      //       // </div>
-      //       <li>
-      //         <Card character={data} />
-      //       </li>
-      //     ))
-      // );
       return (
         <h3>
           Let's select a <strong>characterisctic</strong>
         </h3>
       );
     }
-    // console.log(selectedCategorie);
   };
-  // const episodeNumber = () => {
-  //   try {
-  //     console.log(Object.values(charactersData.episode[1]));
-  //   } catch (error) {
-  //     console.log("erreur numero de l'épisode", error);
-  //   }
-  // };
+
   const cleanCharacteristics = () => {
     // setSelectedEpisode();
     setSelectedDate();
