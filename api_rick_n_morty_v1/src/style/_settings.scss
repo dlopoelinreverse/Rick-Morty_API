@@ -38,3 +38,40 @@ body {
     // overflow: hidden;
     background: $color2;
 }
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ul {
+       
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background: $color4;
+        padding: 5px 20px;
+        border-radius: 30px;
+        // width: 100%;
+        
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $color51;
+            font-family: $title1;
+            letter-spacing: 2px;
+            text-decoration: none;
+            // width: 100px;
+            text-align: center;
+            padding: 10px;
+            margin: 0 10px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: 0.2s ease;
+
+            &:hover {
+                background: $color31;
+
+            }
+        }        
+    }
+}

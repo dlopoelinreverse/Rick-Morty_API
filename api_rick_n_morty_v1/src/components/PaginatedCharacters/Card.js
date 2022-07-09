@@ -21,7 +21,7 @@ const Card = ({ character }) => {
           id={character.id}
         />
       </div>
-      <div className="content">
+      <div className="content" id={character.id}>
         <h5 id={character.id}>{character.name}</h5>
       </div>
     </div>

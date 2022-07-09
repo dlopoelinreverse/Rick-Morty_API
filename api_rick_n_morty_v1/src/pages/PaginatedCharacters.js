@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import V2DataDisplay from "../components/PaginatedCharacters/V2DataDisplay";
+import Navigation from "../components/Navigation";
 
 const PaginatedCharacters = () => {
   const [numberOfPage, setNumberOfPage] = useState();
@@ -47,6 +48,7 @@ const PaginatedCharacters = () => {
             />
           </div>
         </div>
+        <Navigation />
       </header>
       <V2DataDisplay pageData={pageData} />
       <footer></footer>

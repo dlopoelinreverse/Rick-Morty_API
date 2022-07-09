@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import axios from "axios";
-// import Home from "./pages/Home";
-import AllCharactersFromApp from "./pages/AllCharactersFromApp";
+import Home from "./pages/Home";
 import PaginatedCharacters from "./pages/PaginatedCharacters";
+import CharactersByEpisode from "./pages/CharactersByEpisode";
+import CharactersByCharacteristics from "./pages/CharactersByCharacteristics";
 
 const App = () => {
   const [charactersNumber, setCharactersNumber] = useState();
@@ -35,11 +36,17 @@ const App = () => {
   return (
     <div className="App">
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
+        <Route path="/" element={<Home />} />
         <Route path="/paginated-characters" element={<PaginatedCharacters />} />
         <Route
-          path="/all-characters"
-          element={<AllCharactersFromApp charactersData={allCharactersData} />}
+          path="/by-episode"
+          element={<CharactersByEpisode charactersData={allCharactersData} />}
+        />
+        <Route
+          path="/by-characteristics"
+          element={
+            <CharactersByCharacteristics charactersData={allCharactersData} />
+          }
         />
       </Routes>
     </div>
