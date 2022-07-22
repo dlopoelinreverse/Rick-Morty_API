@@ -3,11 +3,13 @@ import axios from "axios";
 import ReactPaginate from "react-paginate";
 import V2DataDisplay from "../components/PaginatedCharacters/V2DataDisplay";
 import Navigation from "../components/Navigation";
+import DataDisplay from "../components/PaginatedCharacters/V2DataDisplay";
 
 const PaginatedCharacters = () => {
   const [numberOfPage, setNumberOfPage] = useState();
   const [pageSelected, setPageSelected] = useState();
   const [pageData, setPageData] = useState([]);
+  const context = "paginated";
   const handlePageCLick = (data) => {
     setPageSelected(data.selected + 1);
     // console.log(pageSelected);
@@ -48,9 +50,10 @@ const PaginatedCharacters = () => {
             />
           </div>
         </div>
-        <Navigation />
+        <Navigation context={context} />
       </header>
-      <V2DataDisplay pageData={pageData} />
+      {/* <V2DataDisplay pageData={pageData} /> */}
+      <DataDisplay pageData={pageData} />
       <footer></footer>
     </div>
   );

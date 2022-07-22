@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 // import SpecificCard from "./SpecificCard";
 
@@ -11,7 +13,15 @@ const Card = ({ character }) => {
   //     setShowCard(true);
   //   }
   // };
+  // console.log(character);
   return (
+    // <NavLink to="/specific-character" >
+    // <NavLink
+    //   to={{
+    //     pathname: "/specific-character",
+    //     state: { from: "This is my props" },
+    //   }}
+    // >
     <div className="card" id={character.id}>
       {/* <li>/ */}
       <div className="img-container" id={character.id}>
@@ -25,6 +35,7 @@ const Card = ({ character }) => {
         <h5 id={character.id}>{character.name}</h5>
       </div>
     </div>
+    // </NavLink>
   );
 };
 

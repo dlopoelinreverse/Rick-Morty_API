@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Card2 from "../components/Card2";
+import CharacterTable from "../components/CharacterTable";
 import Navigation from "../components/Navigation";
 import Card from "../components/PaginatedCharacters/Card";
 
@@ -42,8 +44,9 @@ const CharactersByEpisode = ({ charactersData }) => {
       return Object.values(charactersData)
         .filter((character) => idEpArray.includes(character.id))
         .map((data) => (
-          <li>
-            <Card key={data.id} character={data} />
+          <li key={data.id}>
+            {/* <Card key={data.id} character={data} /> */}
+            <CharacterTable character={data} />
           </li>
         ));
     }
@@ -92,7 +95,7 @@ const CharactersByEpisode = ({ charactersData }) => {
       </header>
       <div className="filters">
         <div className="episodeFilter">
-          <label for="episode-select">Choose an episode:</label>
+          <label htmlFor="episode-select">Choose an episode:</label>
 
           <select
             name="episode"

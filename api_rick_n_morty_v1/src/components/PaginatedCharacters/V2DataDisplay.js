@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import SpecificCharacter from "../../pages/SpecificCharacter";
 import Card from "./Card";
 import Modal from "./Modal";
 
@@ -33,6 +35,7 @@ const DataDisplay = ({ pageData }) => {
   return (
     <div className="data-display">
       <ul className="cards-container">
+        {/* <NavLink to="/specific-character" > */}
         {pageResults &&
           pageResults.map((character) => (
             <li
@@ -40,19 +43,21 @@ const DataDisplay = ({ pageData }) => {
               id={character.id}
               onClick={(e) => (
                 setIdSelected(e.target.id),
-                setOpenModal(true),
-                getDataId(e.target.id)
+                // setOpenModal(true),
+                getDataId(e.target.id),
+                (<SpecificCharacter character={character} />)
               )}
             >
               <Card key={character.id} character={character} />
             </li>
           ))}
+        {/* </NavLink> */}
       </ul>
-      <Modal
+      {/* <Modal
         open={openModal}
         dataId={dataId}
         onClose={() => setOpenModal(false)}
-      />
+      /> */}
     </div>
   );
 };

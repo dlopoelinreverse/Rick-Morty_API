@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import PaginatedCharacters from "./pages/PaginatedCharacters";
 import CharactersByEpisode from "./pages/CharactersByEpisode";
 import CharactersByCharacteristics from "./pages/CharactersByCharacteristics";
+import SpecificCharacter from "./pages/SpecificCharacter";
 
 const App = () => {
   const [charactersNumber, setCharactersNumber] = useState();
@@ -47,6 +48,10 @@ const App = () => {
           element={
             <CharactersByCharacteristics charactersData={allCharactersData} />
           }
+        />
+        <Route
+          path="/specific-character"
+          element={<SpecificCharacter charactersData={allCharactersData} />}
         />
       </Routes>
     </div>

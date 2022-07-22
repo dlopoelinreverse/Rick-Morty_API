@@ -1,12 +1,14 @@
 .data-display {
     // margin:5vh 2.5vw 5vh 2.5vw ;  
-
+    display: flex;
+    justify-content: end;
+    align-items: center;
     margin: 10px auto;
     .cards-container {
         
         width: 90%;
         
-        margin: 0 auto;
+        // margin: 0 auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;

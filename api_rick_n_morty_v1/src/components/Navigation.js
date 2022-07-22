@@ -1,7 +1,19 @@
 import React from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = ({ context }) => {
+  console.log(context);
+  const setClassByContext = () => {
+    const navigation = document.querySelector(".navigation");
+    if (context) {
+      navigation.classList.add(context);
+    }
+    console.log(navigation);
+  };
+  useEffect(() => {
+    setClassByContext();
+  }, []);
   return (
     <div className="navigation">
       <ul>

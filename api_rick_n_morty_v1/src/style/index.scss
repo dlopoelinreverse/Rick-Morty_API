@@ -1,4 +1,6 @@
 @import "./settings";
-@import "./components/header";
+// paginated
+@import "./components/paginated/header";
 // @import "./components/dataDisplay";
-@import "./components/v2DataDisplay"
+@import "./components/paginated/v2DataDisplay";
+@import "./components/navigation"

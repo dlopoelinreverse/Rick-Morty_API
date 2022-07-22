@@ -176,7 +176,7 @@ const CharactersByCharacteristics = ({ charactersData }) => {
           </select>
         </div> */}
         <div className="locationsFilter">
-          <label for="locations-select">Choose a location:</label>
+          <label htmlFor="locations-select">Choose a location:</label>
 
           <select
             name="locations"
@@ -204,7 +204,7 @@ const CharactersByCharacteristics = ({ charactersData }) => {
           </select>
         </div>
         <div className="originsFilter">
-          <label for="origins-select">Choose an origin:</label>
+          <label htmlFor="origins-select">Choose an origin:</label>
 
           <select
             name="origins"
@@ -232,7 +232,7 @@ const CharactersByCharacteristics = ({ charactersData }) => {
           </select>
         </div>
         <div className="typesFilter">
-          <label for="types-select">Choose a type:</label>
+          <label htmlFor="types-select">Choose a type:</label>
 
           <select
             name="types"
